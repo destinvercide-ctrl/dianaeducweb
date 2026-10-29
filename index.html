@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Ethics - Educational Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyberBlue: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            neon: '#00d2ff',
+                            glow: '#00f0ff'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-main: #f0f7ff;
+            --text-main: #0c4a6e;
+            --card-bg: rgba(255, 255, 255, 0.88);
+            --card-border: rgba(56, 189, 248, 0.4);
+            --glow-color: rgba(0, 210, 255, 0.5);
+            --nav-bg: rgba(255, 255, 255, 0.88);
+        }
+
+        .dark {
+            --bg-main: #050b14;
+            --text-main: #f0f9ff;
+            --card-bg: rgba(10, 22, 40, 0.85);
+            --card-border: rgba(0, 240, 255, 0.3);
+            --glow-color: rgba(0, 210, 255, 0.4);
+            --nav-bg: rgba(5, 11, 20, 0.9);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+        }
+
+        .bg-sparkle-mesh {
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(0, 240, 255, 0.22) 0px, transparent 40%),
+                radial-gradient(at 90% 10%, rgba(14, 165, 233, 0.25) 0px, transparent 40%),
+                radial-gradient(at 50% 80%, rgba(56, 189, 248, 0.2) 0px, transparent 50%),
+                radial-gradient(at 80% 90%, rgba(0, 210, 255, 0.18) 0px, transparent 40%);
+        }
+
+        .glass-panel {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 10px 30px -10px rgba(0, 165, 233, 0.15);
+        }
+
+        @keyframes sidlakGlow {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(0, 210, 255, 0.4), 0 0 30px rgba(0, 240, 255, 0.25);
+                border-color: rgba(56, 189, 248, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(0, 240, 255, 0.8), 0 0 50px rgba(0, 210, 255, 0.5);
+                border-color: rgba(0, 240, 255, 0.9);
+            }
+        }
+        .sidlak-pulse {
+            animation: sidlakGlow 3s infinite ease-in-out;
+        }
+
+        @keyframes shimmerSparkle {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .sparkle-text {
+            background: linear-gradient(90deg, #0284c7, #00d2ff, #00f0ff, #38bdf8, #0284c7);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            animation: shimmerSparkle 4s linear infinite;
+        }
+        .dark .sparkle-text {
+            background: linear-gradient(90deg, #38bdf8, #00f0ff, #00d2ff, #7dd3fc, #38bdf8);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            animation: shimmerSparkle 4s linear infinite;
+        }
+
+        .hover-sidlak {
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-sidlak:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px -5px rgba(0, 210, 255, 0.35), 0 0 20px rgba(0, 240, 255, 0.3);
+            border-color: rgba(0, 240, 255, 0.8);
+        }
+
+        @keyframes floatAnim {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+        .animate-float {
+            animation: floatAnim 4.5s ease-in-out infinite;
+        }
+
+        ::-webkit-scrollbar {
+            width: 9px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 210, 255, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #0284c7, #00f0ff);
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-sparkle-mesh selection:bg-cyberBlue-400 selection:text-slate-950">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 transition-all duration-300 backdrop-blur-md" style="background-color: var(--nav-bg); border-bottom: 1px solid var(--card-border);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20 py-2">
+                <a href="#home" class="flex items-center space-x-2.5 sm:space-x-3 group shrink-0">
+                    <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-cyberBlue-600 via-cyberBlue-400 to-cyberBlue-glow flex items-center justify-center text-slate-950 font-black text-lg sm:text-xl shadow-lg sidlak-pulse group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <span class="font-extrabold text-lg sm:text-xl tracking-tight text-sky-950 dark:text-sky-50">
+                        Ethiko<span class="sparkle-text">Tech</span>
+                    </span>
+                </a>
+
+                <nav class="hidden xl:flex items-center space-x-1 text-xs sm:text-sm font-bold">
+                    <a href="#home" class="px-3 py-2 rounded-xl hover:text-cyberBlue-600 dark:hover:text-cyberBlue-glow hover:bg-sky-100/60 dark:hover:bg-sky-900/40 transition-all" data-i18n="nav_home">Home</a>
+                    <a href="#intro" class="px-3 py-2 rounded-xl hover:text-cyberBlue-600 dark:hover:text-cyberBlue-glow hover:bg-sky-100/60 dark:hover:bg-sky-900/40 transition-all" data-i18n="nav_intro">Introduction</a>
+                    <a href="#history" class="px-3 py-2 rounded-xl hover:text-cyberBlue-600 dark:hover:text-cyberBlue-glow hover:bg-sky-100/60 dark:hover:bg-sky-900/40 transition-all" data-i18n="nav_history">History</a>
+                    <a href="#issues" class="px-3 py-2 rounded-xl hover:text-cyberBlue-600 dark:hover:text-cyberBlue-glow hover:bg-sky-100/60 dark:hover:bg-sky-900/40 transition-all" data-i18n="nav_issues">Ethical Issues</a>
+                    <a href="#decision" class="px-3 py-2 rounded-xl hover:text-cyberBlue-600 dark:hover:text-cyberBlue-glow hover:bg-sky-100/60 dark:hover:bg-sky-900/40 transition-all" data-i18n="nav_decision">Decision Lab</a>
+                    <a href="#media" class="px-3 py-2 rounded-xl hover:text-cyberBlue-600 dark:hover:text-cyberBlue-glow hover:bg-sky-100/60 dark:hover:bg-sky-900/40 transition-all" data-i18n="nav_media">Media Gallery</a>
+                    <a href="#reference" class="px-3 py-2 rounded-xl hover:text-cyberBlue-600 dark:hover:text-cyberBlue-glow hover:bg-sky-100/60 dark:hover:bg-sky-900/40 transition-all" data-i18n="nav_reference">References</a>
+                    <a href="#characters" class="px-3 py-2 rounded-xl hover:text-cyberBlue-600 dark:hover:text-cyberBlue-glow hover:bg-sky-100/60 dark:hover:bg-sky-900/40 transition-all" data-i18n="nav_characters">Characters</a>
+                </nav>
+
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <div class="relative">
+                        <select id="langSelector" onchange="changeLanguage(this.value)" class="bg-sky-100/80 dark:bg-sky-950/80 text-sky-950 dark:text-sky-100 text-xs sm:text-sm font-extrabold py-2 px-2.5 sm:px-3 pr-7 sm:pr-8 rounded-xl border border-cyberBlue-400/50 focus:outline-none focus:ring-2 focus:ring-cyberBlue-400 cursor-pointer shadow-md transition-all">
+                            <option value="bis">Bisaya</option>
+                            <option value="tag">Tagalog</option>
+                            <option value="en">English</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-cyberBlue-600 dark:text-cyberBlue-400">
+                            <i class="fa-solid fa-globe text-xs"></i>
+                        </div>
+                    </div>
+
+                    <button onclick="toggleTheme()" id="themeToggleBtn" aria-label="Toggle Theme" class="p-2 sm:p-2.5 rounded-xl bg-sky-100/80 dark:bg-sky-950/80 text-sky-800 dark:text-sky-300 border border-cyberBlue-400/50 shadow-md hover:scale-105 transition-transform">
+                        <i id="themeIcon" class="fa-solid fa-sun text-amber-500"></i>
+                    </button>
+
+                    <button onclick="toggleMobileMenu()" class="xl:hidden p-2 rounded-xl text-sky-900 dark:text-sky-100 hover:bg-sky-100 dark:hover:bg-sky-900 focus:outline-none">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden xl:hidden border-t border-cyberBlue-400/30 bg-sky-50/95 dark:bg-slate-950/95 px-4 pt-3 pb-5 space-y-2 shadow-2xl">
+            <a href="#home" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg font-bold hover:bg-sky-200/50 dark:hover:bg-sky-900/50 text-sm" data-i18n="nav_home">Home</a>
+            <a href="#intro" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg font-bold hover:bg-sky-200/50 dark:hover:bg-sky-900/50 text-sm" data-i18n="nav_intro">Introduction</a>
+            <a href="#history" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg font-bold hover:bg-sky-200/50 dark:hover:bg-sky-900/50 text-sm" data-i18n="nav_history">History</a>
+            <a href="#issues" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg font-bold hover:bg-sky-200/50 dark:hover:bg-sky-900/50 text-sm" data-i18n="nav_issues">Ethical Issues</a>
+            <a href="#decision" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg font-bold hover:bg-sky-200/50 dark:hover:bg-sky-900/50 text-sm" data-i18n="nav_decision">Decision Lab</a>
+            <a href="#media" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg font-bold hover:bg-sky-200/50 dark:hover:bg-sky-900/50 text-sm" data-i18n="nav_media">Media Gallery</a>
+            <a href="#reference" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg font-bold hover:bg-sky-200/50 dark:hover:bg-sky-900/50 text-sm" data-i18n="nav_reference">References</a>
+            <a href="#characters" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg font-bold hover:bg-sky-200/50 dark:hover:bg-sky-900/50 text-sm" data-i18n="nav_characters">Characters</a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow">
+
+        <!-- HERO SECTION -->
+        <section id="home" class="py-12 sm:py-20 lg:py-28 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-5 sm:space-y-6 text-center lg:text-left">
+                        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-cyberBlue-500/10 text-cyberBlue-700 dark:text-cyberBlue-glow border border-cyberBlue-400/40 sidlak-pulse">
+                            <i class="fa-solid fa-sparkles text-cyberBlue-500"></i> <span data-i18n="hero_badge">Mag-sidlak nga Blue Portal</span>
+                        </span>
+                        
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+                            <span data-i18n="hero_title_1">Paggiya sa Moralidad sa</span><br>
+                            <span class="sparkle-text text-4xl sm:text-6xl lg:text-7xl" data-i18n="hero_title_2">Panahon sa Teknolohiya</span>
+                        </h1>
+                        
+                        <p class="text-sm sm:text-lg text-sky-950/80 dark:text-sky-100/80 leading-relaxed font-semibold max-w-2xl mx-auto lg:mx-0" data-i18n="hero_description">
+                            Tun-i ang pangunang prinsipyo sa Computer Ethics. Susiha kung giunsa pag-umol sa responsableng teknolohiya, data privacy, ug sakto nga pagdesisyon ang atong digital nga kaugmaon.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start pt-2 sm:pt-4">
+                            <a href="#intro" class="w-full sm:w-auto px-7 py-3.5 sm:py-4 rounded-2xl bg-gradient-to-r from-cyberBlue-600 via-cyberBlue-500 to-cyberBlue-glow text-slate-950 font-black text-sm sm:text-base shadow-xl hover:scale-105 sidlak-pulse transition-all flex items-center justify-center gap-2 group">
+                                <span data-i18n="btn_start_learning">Sugdi ang Pagtuon</span>
+                                <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                            <a href="#decision" class="w-full sm:w-auto px-7 py-3.5 sm:py-4 rounded-2xl glass-panel font-extrabold text-sky-950 dark:text-sky-100 hover:bg-sky-200/40 dark:hover:bg-sky-900/40 transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+                                <i class="fa-solid fa-gamepad text-cyberBlue-500"></i>
+                                <span data-i18n="btn_try_simulator">Subayi ang Kaso</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Glowing Floating Hero Card -->
+                    <div class="lg:col-span-5 w-full">
+                        <div class="relative max-w-md mx-auto animate-float">
+                            <div class="glass-panel p-6 sm:p-8 rounded-3xl hover-sidlak space-y-6">
+                                <div class="flex items-center space-x-4 border-b border-cyberBlue-400/30 pb-5">
+                                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyberBlue-600 to-cyberBlue-glow text-slate-950 font-black text-2xl shadow-lg flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-scale-balanced"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-extrabold text-lg sm:text-xl" data-i18n="card_ethics_core">Pangunang Haligi</h3>
+                                        <p class="text-xs font-bold text-cyberBlue-600 dark:text-cyberBlue-400" data-i18n="card_ethics_sub">PAPA Framework</p>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3 sm:gap-4">
+                                    <div class="p-3.5 sm:p-4 rounded-2xl bg-sky-100/60 dark:bg-sky-950/60 border border-cyberBlue-400/30 flex items-center gap-2.5 font-extrabold text-xs sm:text-sm">
+                                        <i class="fa-solid fa-lock text-cyberBlue-500 text-base sm:text-lg"></i> <span data-i18n="pillar_privacy">Privacy</span>
+                                    </div>
+                                    <div class="p-3.5 sm:p-4 rounded-2xl bg-sky-100/60 dark:bg-sky-950/60 border border-cyberBlue-400/30 flex items-center gap-2.5 font-extrabold text-xs sm:text-sm">
+                                        <i class="fa-solid fa-bullseye text-cyberBlue-500 text-base sm:text-lg"></i> <span data-i18n="pillar_accuracy">Accuracy</span>
+                                    </div>
+                                    <div class="p-3.5 sm:p-4 rounded-2xl bg-sky-100/60 dark:bg-sky-950/60 border border-cyberBlue-400/30 flex items-center gap-2.5 font-extrabold text-xs sm:text-sm">
+                                        <i class="fa-solid fa-copyright text-cyberBlue-500 text-base sm:text-lg"></i> <span data-i18n="pillar_property">Property</span>
+                                    </div>
+                                    <div class="p-3.5 sm:p-4 rounded-2xl bg-sky-100/60 dark:bg-sky-950/60 border border-cyberBlue-400/30 flex items-center gap-2.5 font-extrabold text-xs sm:text-sm">
+                                        <i class="fa-solid fa-universal-access text-cyberBlue-500 text-base sm:text-lg"></i> <span data-i18n="pillar_access">Accessibility</span>
+                                    </div>
+                                </div>
+                                <div class="p-3.5 rounded-2xl bg-slate-950 text-cyan-300 font-mono text-xs border border-cyberBlue-400/40 shadow-inner overflow-x-auto">
+                                   <p class="text-cyan-400 font-bold"> Principles of Digital Responsibility</p>
+                                   <p class="text-slate-300 mt-1">Technology empowers humanity when guided by ethical choices and mutual respect.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- INTRODUCTION SECTION -->
+        <section id="intro" class="py-16 sm:py-24 border-t border-cyberBlue-400/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                    <span class="text-xs font-black tracking-widest uppercase text-cyberBlue-700 dark:text-cyberBlue-glow bg-cyberBlue-500/10 px-4 py-1.5 rounded-full border border-cyberBlue-400/30" data-i18n="intro_subtitle">PANGUNANG KONSEPTO</span>
+                    <h2 class="text-2xl sm:text-4xl font-black mt-3 sm:mt-4" data-i18n="intro_title">Unsa ang Computer Ethics?</h2>
+                    <div class="w-20 sm:w-24 h-1.5 bg-gradient-to-r from-cyberBlue-500 to-cyberBlue-glow mx-auto my-3 sm:my-4 rounded-full"></div>
+                    <p class="text-sm sm:text-lg text-sky-900/80 dark:text-sky-100/80 font-semibold leading-relaxed" data-i18n="intro_desc">
+                        Ang Computer Ethics usa ka sanga sa pilosopiya nga nagasusi sa mga moral nga isyu nga gikan sa paghimo ug paggamit sa kompyuter ug teknolohiya.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                    <div class="glass-panel p-6 sm:p-8 rounded-3xl hover-sidlak">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-cyberBlue-400/20 text-cyberBlue-600 dark:text-cyberBlue-glow flex items-center justify-center text-xl sm:text-2xl mb-5 shadow-inner border border-cyberBlue-400/40">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2.5" data-i18n="intro_card1_title">Isyu sa Kumpas sa Kodigo</h3>
+                        <p class="text-xs sm:text-sm font-medium leading-relaxed opacity-90" data-i18n="intro_card1_desc">
+                            Tungod kay mas paspas ang pag-uswag sa teknolohiya kaysa sa balaod, ang mga programmer nag-atubang ug mga hagit sa data privacy ug digital nga responsabilidad.
+                        </p>
+                    </div>
+
+                    <div class="glass-panel p-6 sm:p-8 rounded-3xl hover-sidlak">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-cyberBlue-400/20 text-cyberBlue-600 dark:text-cyberBlue-glow flex items-center justify-center text-xl sm:text-2xl mb-5 shadow-inner border border-cyberBlue-400/40">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2.5" data-i18n="intro_card2_title">Epekto sa Katilingban</h3>
+                        <p class="text-xs sm:text-sm font-medium leading-relaxed opacity-90" data-i18n="intro_card2_desc">
+                            Ang mga lihok sa internet adunay tinuod nga epekto sa kalibutan. Gidisenyo ang etika aron makatabang ang kompyuter sa katawhan.
+                        </p>
+                    </div>
+
+                    <div class="glass-panel p-6 sm:p-8 rounded-3xl hover-sidlak">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-cyberBlue-400/20 text-cyberBlue-600 dark:text-cyberBlue-glow flex items-center justify-center text-xl sm:text-2xl mb-5 shadow-inner border border-cyberBlue-400/40">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2.5" data-i18n="intro_card3_title">Tungdan sa Propesyonal</h3>
+                        <p class="text-xs sm:text-sm font-medium leading-relaxed opacity-90" data-i18n="intro_card3_desc">
+                            Ang mga IT ug software engineers adunay dako nga gahum ug obligasyon nga panalipdan ang seguridad ug pribasidad sa mga tawo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HISTORY TIMELINE SECTION -->
+        <section id="history" class="py-16 sm:py-24 border-t border-cyberBlue-400/20 bg-cyberBlue-500/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                    <span class="text-xs font-black tracking-widest uppercase text-cyberBlue-700 dark:text-cyberBlue-glow bg-cyberBlue-500/10 px-4 py-1.5 rounded-full border border-cyberBlue-400/30" data-i18n="history_subtitle">PAG-USWAG SA DIGITAL VALUES</span>
+                    <h2 class="text-2xl sm:text-4xl font-black mt-3 sm:mt-4" data-i18n="history_title">Kasaysayan ug Kronolohiya</h2>
+                    <div class="w-20 sm:w-24 h-1.5 bg-gradient-to-r from-cyberBlue-500 to-cyberBlue-glow mx-auto my-3 sm:my-4 rounded-full"></div>
+                </div>
+
+                <div class="relative border-l-2 sm:border-l-4 border-cyberBlue-400/50 ml-3 sm:ml-6 md:ml-36 space-y-8 sm:space-y-12">
+                    <div class="relative pl-6 sm:pl-8 group">
+                        <div class="absolute -left-[11px] sm:-left-[14px] top-1.5 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-cyberBlue-500 border-2 sm:border-4 border-sky-50 dark:border-slate-950 sidlak-pulse"></div>
+                        <span class="block md:absolute md:-left-36 md:top-1 font-black text-cyberBlue-700 dark:text-cyberBlue-glow text-xs sm:text-base mb-2 md:mb-0">1940s - 1950s</span>
+                        <div class="glass-panel p-5 sm:p-8 rounded-3xl hover-sidlak">
+                            <h3 class="text-lg sm:text-xl font-bold" data-i18n="hist_1_title">Norbert Wiener ug Cybernetics</h3>
+                            <p class="text-xs sm:text-sm font-medium opacity-90 mt-2 leading-relaxed" data-i18n="hist_1_desc">
+                                Gimugna ni Propesor Norbert Wiener ang Cybernetics, diin iyang gipanglantawan ang dako nga hagit sa etika sa pag-abot sa kompyuter.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 sm:pl-8 group">
+                        <div class="absolute -left-[11px] sm:-left-[14px] top-1.5 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-cyberBlue-500 border-2 sm:border-4 border-sky-50 dark:border-slate-950 sidlak-pulse"></div>
+                        <span class="block md:absolute md:-left-36 md:top-1 font-black text-cyberBlue-700 dark:text-cyberBlue-glow text-xs sm:text-base mb-2 md:mb-0">1970s</span>
+                        <div class="glass-panel p-5 sm:p-8 rounded-3xl hover-sidlak">
+                            <h3 class="text-lg sm:text-xl font-bold" data-i18n="hist_2_title">Paggamit sa Terminong 'Computer Ethics'</h3>
+                            <p class="text-xs sm:text-sm font-medium opacity-90 mt-2 leading-relaxed" data-i18n="hist_2_desc">
+                                Gipailaila ni Walter Maner ang tawag nga 'Computer Ethics' isip usag kabukiran nga natad sa propesyonal nga etika.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 sm:pl-8 group">
+                        <div class="absolute -left-[11px] sm:-left-[14px] top-1.5 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-cyberBlue-500 border-2 sm:border-4 border-sky-50 dark:border-slate-950 sidlak-pulse"></div>
+                        <span class="block md:absolute md:-left-36 md:top-1 font-black text-cyberBlue-700 dark:text-cyberBlue-glow text-xs sm:text-base mb-2 md:mb-0">1985</span>
+                        <div class="glass-panel p-5 sm:p-8 rounded-3xl hover-sidlak">
+                            <h3 class="text-lg sm:text-xl font-bold" data-i18n="hist_3_title">Policy Vacuums ni James H. Moor</h3>
+                            <p class="text-xs sm:text-sm font-medium opacity-90 mt-2 leading-relaxed" data-i18n="hist_3_desc">
+                                Gisulat ni Moor ang 'Policy Vacuums'—mga sitwasyon diin mas paspas ang teknolohiya kaysa sa mga lagda ug balaod.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 sm:pl-8 group">
+                        <div class="absolute -left-[11px] sm:-left-[14px] top-1.5 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-cyberBlue-500 border-2 sm:border-4 border-sky-50 dark:border-slate-950 sidlak-pulse"></div>
+                        <span class="block md:absolute md:-left-36 md:top-1 font-black text-cyberBlue-700 dark:text-cyberBlue-glow text-xs sm:text-base mb-2 md:mb-0">1992</span>
+                        <div class="glass-panel p-5 sm:p-8 rounded-3xl hover-sidlak">
+                            <h3 class="text-lg sm:text-xl font-bold" data-i18n="hist_4_title">Ang 10 ka Sugo sa Computer Ethics</h3>
+                            <p class="text-xs sm:text-sm font-medium opacity-90 mt-2 leading-relaxed" data-i18n="hist_4_desc">
+                                Gihimo sa Computer Ethics Institute (CEI) ang 10 ka sugo para sa saktong paggawi diha sa kompyuter.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 sm:pl-8 group">
+                        <div class="absolute -left-[11px] sm:-left-[14px] top-1.5 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-cyberBlue-glow border-2 sm:border-4 border-sky-50 dark:border-slate-950 sidlak-pulse"></div>
+                        <span class="block md:absolute md:-left-36 md:top-1 font-black text-cyberBlue-glow text-xs sm:text-base mb-2 md:mb-0">Present Era</span>
+                        <div class="glass-panel p-5 sm:p-8 rounded-3xl hover-sidlak">
+                            <h3 class="text-lg sm:text-xl font-bold" data-i18n="hist_5_title">Etika sa AI ug Algorithmic Responsibility</h3>
+                            <p class="text-xs sm:text-sm font-medium opacity-90 mt-2 leading-relaxed" data-i18n="hist_5_desc">
+                                Karon, ang pagtagad anaa sa Artificial Intelligence, data privacy laws, deepfakes, ug awtomatikong mga sistema.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ETHICAL ISSUES SECTION -->
+        <section id="issues" class="py-16 sm:py-24 border-t border-cyberBlue-400/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                    <span class="text-xs font-black tracking-widest uppercase text-cyberBlue-700 dark:text-cyberBlue-glow bg-cyberBlue-500/10 px-4 py-1.5 rounded-full border border-cyberBlue-400/30" data-i18n="issues_subtitle">MGA HAGIT SA KARON</span>
+                    <h2 class="text-2xl sm:text-4xl font-black mt-3 sm:mt-4" data-i18n="issues_title">Pangunang Isyu sa Kompyuter</h2>
+                    <div class="w-20 sm:w-24 h-1.5 bg-gradient-to-r from-cyberBlue-500 to-cyberBlue-glow mx-auto my-3 sm:my-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    <div class="glass-panel rounded-3xl p-6 sm:p-8 hover-sidlak flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-cyberBlue-400/20 text-cyberBlue-600 dark:text-cyberBlue-glow flex items-center justify-center text-xl mb-5 border border-cyberBlue-400/40">
+                                <i class="fa-solid fa-user-secret"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold mb-2.5" data-i18n="issue_1_title">Pribasidad ug Pagpaniid</h3>
+                            <p class="text-xs sm:text-sm font-medium opacity-90 leading-relaxed" data-i18n="issue_1_desc">
+                                Ang pagkuha sa personal nga data nga walay pagtugot ug ang pagpaniid sa kompanya nagaguba sa kagawasan sa tawo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-3xl p-6 sm:p-8 hover-sidlak flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-cyberBlue-400/20 text-cyberBlue-600 dark:text-cyberBlue-glow flex items-center justify-center text-xl mb-5 border border-cyberBlue-400/40">
+                                <i class="fa-solid fa-file-shield"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold mb-2.5" data-i18n="issue_2_title">Propyedad ug Pagpamirat (Piracy)</h3>
+                            <p class="text-xs sm:text-sm font-medium opacity-90 leading-relaxed" data-i18n="issue_2_desc">
+                                Sayon ra kaayo ikopyang mga software ug artwork sa digital. Kinahanglan balansehon ang katungod sa naghimo ug sa publiko.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-3xl p-6 sm:p-8 hover-sidlak flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-cyberBlue-400/20 text-cyberBlue-600 dark:text-cyberBlue-glow flex items-center justify-center text-xl mb-5 border border-cyberBlue-400/40">
+                                <i class="fa-solid fa-bug"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold mb-2.5" data-i18n="issue_3_title">Cybercrime ug Hacking</h3>
+                            <p class="text-xs sm:text-sm font-medium opacity-90 leading-relaxed" data-i18n="issue_3_desc">
+                                Ang malware ug ransomware nagdala ug dako nga damyos. Kinahanglan klaruhon ang subay-sa-balaod nga hacking (white hat).
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-3xl p-6 sm:p-8 hover-sidlak flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-cyberBlue-400/20 text-cyberBlue-600 dark:text-cyberBlue-glow flex items-center justify-center text-xl mb-5 border border-cyberBlue-400/40">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold mb-2.5" data-i18n="issue_4_title">Pagkiling sa AI (Artificial Intelligence)</h3>
+                            <p class="text-xs sm:text-sm font-medium opacity-90 leading-relaxed" data-i18n="issue_4_desc">
+                                Ang mga modelo sa AI mahimong magdala ug bias gikan sa datos, nga magpahinabo ug dili patas nga pagtratar.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-3xl p-6 sm:p-8 hover-sidlak flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-cyberBlue-400/20 text-cyberBlue-600 dark:text-cyberBlue-glow flex items-center justify-center text-xl mb-5 border border-cyberBlue-400/40">
+                                <i class="fa-solid fa-network-wired"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold mb-2.5" data-i18n="issue_5_title">Digital Divide ug Pag-access</h3>
+                            <p class="text-xs sm:text-sm font-medium opacity-90 leading-relaxed" data-i18n="issue_5_desc">
+                                Ang dili patas nga pag-access sa internet ug kompyuter nagpadako sa gintang sa adunahan ug kabus.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-3xl p-6 sm:p-8 hover-sidlak flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-cyberBlue-400/20 text-cyberBlue-600 dark:text-cyberBlue-glow flex items-center justify-center text-xl mb-5 border border-cyberBlue-400/40">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold mb-2.5" data-i18n="issue_6_title">Awtomasyon ug Nawad-ag Trabaho</h3>
+                            <p class="text-xs sm:text-sm font-medium opacity-90 leading-relaxed" data-i18n="issue_6_desc">
+                                Ang paspas nga awtomasyon nag-ilis sa mga trabahante. Kinahanglan responsableng tabangan ang mga naapektuhan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DECISION MAKING SIMULATOR SECTION -->
+        <section id="decision" class="py-16 sm:py-24 border-t border-cyberBlue-400/20 bg-cyberBlue-500/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                    <span class="text-xs font-black tracking-widest uppercase text-cyberBlue-700 dark:text-cyberBlue-glow bg-cyberBlue-500/10 px-4 py-1.5 rounded-full border border-cyberBlue-400/30" data-i18n="decision_subtitle">PRAKTIKAL NGA LAB</span>
+                    <h2 class="text-2xl sm:text-4xl font-black mt-3 sm:mt-4" data-i18n="decision_title">Paghimo'g Desisyon Simulator</h2>
+                    <div class="w-20 sm:w-24 h-1.5 bg-gradient-to-r from-cyberBlue-500 to-cyberBlue-glow mx-auto my-3 sm:my-4 rounded-full"></div>
+                    <p class="text-sm sm:text-base font-semibold opacity-90" data-i18n="decision_desc">
+                        Ibutang ang imong kaugalingon sa dapit sa usa ka IT professional. Pagpili og tubag ug tan-awa ang moral nga epekto.
+                    </p>
+                </div>
+
+                <div class="max-w-4xl mx-auto glass-panel p-5 sm:p-10 rounded-3xl shadow-2xl relative border border-cyberBlue-400/40">
+                    <div class="flex items-center justify-between border-b border-cyberBlue-400/30 pb-4 mb-6 sm:mb-8">
+                        <span class="text-xs font-extrabold uppercase tracking-wider px-3 py-1 bg-cyberBlue-500/20 text-cyberBlue-800 dark:text-cyberBlue-glow rounded-full border border-cyberBlue-400/40" id="scenarioCategory">Scenario #1</span>
+                        <span class="text-xs font-black text-cyberBlue-600 dark:text-cyberBlue-400" id="scenarioProgress">1 of 8</span>
+                    </div>
+
+                    <div class="mb-6 sm:mb-8">
+                        <h3 class="text-xl sm:text-2xl font-black mb-3" id="scenarioTitle">Loading...</h3>
+                        <p class="text-xs sm:text-base font-medium leading-relaxed opacity-95" id="scenarioText">
+                            Loading scenario description...
+                        </p>
+                    </div>
+
+                    <div class="space-y-3 sm:space-y-4 mb-6 sm:mb-8" id="choicesContainer">
+                        <!-- Dynamic Options -->
+                    </div>
+
+                    <div id="feedbackBox" class="hidden p-4 sm:p-6 rounded-2xl transition-all duration-300 border shadow-lg">
+                        <h4 class="font-extrabold text-sm sm:text-base mb-1.5 flex items-center gap-2" id="feedbackHeader">
+                            <i class="fa-solid fa-circle-info"></i> Evaluation
+                        </h4>
+                        <p class="text-xs sm:text-base font-medium leading-relaxed" id="feedbackText"></p>
+                    </div>
+
+                    <div class="flex justify-between items-center mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-cyberBlue-400/30">
+                        <button onclick="prevScenario()" id="prevBtn" class="px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl border border-cyberBlue-400/40 text-xs sm:text-sm font-bold hover:bg-sky-100/60 dark:hover:bg-sky-900/60 transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+                            <i class="fa-solid fa-arrow-left mr-1.5"></i> <span data-i18n="btn_prev">Mibalik</span>
+                        </button>
+                        <button onclick="nextScenario()" id="nextBtn" class="px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-cyberBlue-600 via-cyberBlue-500 to-cyberBlue-glow text-slate-950 font-black text-xs sm:text-sm shadow-lg sidlak-pulse hover:scale-105 transition-all">
+                            <span data-i18n="btn_next">Sunod nga Kaso</span> <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MEDIA GALLERY SECTION -->
+        <section id="media" class="py-16 sm:py-24 border-t border-cyberBlue-400/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                    <span class="text-xs font-black tracking-widest uppercase text-cyberBlue-700 dark:text-cyberBlue-glow bg-cyberBlue-500/10 px-4 py-1.5 rounded-full border border-cyberBlue-400/30" data-i18n="media_subtitle">MGA KAPAMILITAN SA PAGTUON</span>
+                    <h2 class="text-2xl sm:text-4xl font-black mt-3 sm:mt-4" data-i18n="media_title">Infographics ug Video</h2>
+                    <div class="w-20 sm:w-24 h-1.5 bg-gradient-to-r from-cyberBlue-500 to-cyberBlue-glow mx-auto my-3 sm:my-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                    <div class="glass-panel p-6 sm:p-8 rounded-3xl hover-sidlak">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-xl bg-cyberBlue-400/20 text-cyberBlue-600 dark:text-cyberBlue-glow flex items-center justify-center text-lg border border-cyberBlue-400/40 shrink-0">
+                                <i class="fa-solid fa-list-check"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg sm:text-xl font-bold" data-i18n="media_1_title">Ang 10 ka Sugo sa Computer Ethics</h3>
+                                <p class="text-xs font-bold text-cyberBlue-600 dark:text-cyberBlue-400" data-i18n="media_1_sub">Gihimo sa Computer Ethics Institute (CEI)</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 text-xs sm:text-sm font-semibold opacity-95 max-h-72 sm:max-h-80 overflow-y-auto pr-1">
+                            <div class="p-2.5 sm:p-3 bg-sky-100/50 dark:bg-sky-950/50 rounded-xl border border-cyberBlue-400/20" data-i18n="cmd_1">1. Dili nimo gamiton ang kompyuter aron makadaot sa ubang tawo.</div>
+                            <div class="p-2.5 sm:p-3 bg-sky-100/50 dark:bg-sky-950/50 rounded-xl border border-cyberBlue-400/20" data-i18n="cmd_2">2. Dili nimo samok-samokon ang trabaho sa kompyuter sa uban.</div>
+                            <div class="p-2.5 sm:p-3 bg-sky-100/50 dark:bg-sky-950/50 rounded-xl border border-cyberBlue-400/20" data-i18n="cmd_3">3. Dili ka mangusisa o mangihi sa mga file sa ubang tawo.</div>
+                            <div class="p-2.5 sm:p-3 bg-sky-100/50 dark:bg-sky-950/50 rounded-xl border border-cyberBlue-400/20" data-i18n="cmd_4">4. Dili nimo gamiton ang kompyuter aron mangawat.</div>
+                            <div class="p-2.5 sm:p-3 bg-sky-100/50 dark:bg-sky-950/50 rounded-xl border border-cyberBlue-400/20" data-i18n="cmd_5">5. Dili nimo gamiton ang kompyuter aron magpasaksi og bakak.</div>
+                            <div class="p-2.5 sm:p-3 bg-sky-100/50 dark:bg-sky-950/50 rounded-xl border border-cyberBlue-400/20" data-i18n="cmd_6">6. Dili ka magkopya o maggamit og bayad nga software nga walay bayad.</div>
+                            <div class="p-2.5 sm:p-3 bg-sky-100/50 dark:bg-sky-950/50 rounded-xl border border-cyberBlue-400/20" data-i18n="cmd_7">7. Dili nimo gamiton ang kompyuter sa uban nga walay pagtugot.</div>
+                            <div class="p-2.5 sm:p-3 bg-sky-100/50 dark:bg-sky-950/50 rounded-xl border border-cyberBlue-400/20" data-i18n="cmd_8">8. Dili nimo angakon ang binuhat o huna-huna sa uban.</div>
+                            <div class="p-2.5 sm:p-3 bg-sky-100/50 dark:bg-sky-950/50 rounded-xl border border-cyberBlue-400/20" data-i18n="cmd_9">9. Huna-hunaa ang epekto sa katilingban sa programa nga imong gisulat.</div>
+                            <div class="p-2.5 sm:p-3 bg-sky-100/50 dark:bg-sky-950/50 rounded-xl border border-cyberBlue-400/20" data-i18n="cmd_10">10. Gamita kanunay ang kompyuter sa paagi nga nagpakita og pagtahod sa uban.</div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-6 sm:p-8 rounded-3xl hover-sidlak flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="w-10 h-10 rounded-xl bg-cyberBlue-400/20 text-cyberBlue-600 dark:text-cyberBlue-glow flex items-center justify-center text-lg border border-cyberBlue-400/40 shrink-0">
+                                    <i class="fa-solid fa-video"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg sm:text-xl font-bold" data-i18n="media_2_title">Video Lecture: Computer Ethics</h3>
+                                    <p class="text-xs font-bold text-cyberBlue-600 dark:text-cyberBlue-400" data-i18n="media_2_sub">Gikan sa Examhood Educational Channel</p>
+                                </div>
+                            </div>
+                            
+                            <!-- YouTube Embed Player -->
+                            <div class="relative w-full aspect-video bg-slate-950 rounded-2xl overflow-hidden shadow-2xl border border-cyberBlue-400/40">
+                                <iframe class="w-full h-full" src="https://www.youtube.com/embed/YGW0sgRfIr8" title="Computer Ethics Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-cyberBlue-400/30 text-xs font-bold opacity-80" data-i18n="media_2_foot">
+                            Rekomendado alang sa mga estudyante sa CS ug IT.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REFERENCES SECTION -->
+        <section id="reference" class="py-16 sm:py-24 border-t border-cyberBlue-400/20 bg-cyberBlue-500/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                    <span class="text-xs font-black tracking-widest uppercase text-cyberBlue-700 dark:text-cyberBlue-glow bg-cyberBlue-500/10 px-4 py-1.5 rounded-full border border-cyberBlue-400/30" data-i18n="ref_subtitle">MGA BUBONAN SA KAALAM</span>
+                    <h2 class="text-2xl sm:text-4xl font-black mt-3 sm:mt-4" data-i18n="ref_title">Mga Reperensya ug Dugang Basahonon</h2>
+                    <div class="w-20 sm:w-24 h-1.5 bg-gradient-to-r from-cyberBlue-500 to-cyberBlue-glow mx-auto my-3 sm:my-4 rounded-full"></div>
+                </div>
+
+                <div class="max-w-4xl mx-auto glass-panel rounded-3xl p-5 sm:p-10 space-y-4 shadow-xl border border-cyberBlue-400/40">
+                    <div class="flex items-start gap-3.5 sm:gap-4 p-3.5 sm:p-4 rounded-2xl hover:bg-sky-100/50 dark:hover:bg-sky-900/50 transition-colors">
+                        <div class="p-2.5 sm:p-3 rounded-xl bg-cyberBlue-400/20 text-cyberBlue-600 dark:text-cyberBlue-glow border border-cyberBlue-400/40 shrink-0">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm sm:text-base">ACM Code of Ethics and Professional Conduct</h4>
+                            <p class="text-xs sm:text-sm font-medium opacity-80 mt-0.5">Association for Computing Machinery (ACM). Guidelines for computing professionals worldwide.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3.5 sm:gap-4 p-3.5 sm:p-4 rounded-2xl hover:bg-sky-100/50 dark:hover:bg-sky-900/50 transition-colors border-t border-cyberBlue-400/20">
+                        <div class="p-2.5 sm:p-3 rounded-xl bg-cyberBlue-400/20 text-cyberBlue-600 dark:text-cyberBlue-glow border border-cyberBlue-400/40 shrink-0">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm sm:text-base">IEEE Code of Ethics</h4>
+                            <p class="text-xs sm:text-sm font-medium opacity-80 mt-0.5">Institute of Electrical and Electronics Engineers. Commitments to ethical engineering standards.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3.5 sm:gap-4 p-3.5 sm:p-4 rounded-2xl hover:bg-sky-100/50 dark:hover:bg-sky-900/50 transition-colors border-t border-cyberBlue-400/20">
+                        <div class="p-2.5 sm:p-3 rounded-xl bg-cyberBlue-400/20 text-cyberBlue-600 dark:text-cyberBlue-glow border border-cyberBlue-400/40 shrink-0">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm sm:text-base">Moor, J. H. (1985). "What is Computer Ethics?"</h4>
+                            <p class="text-xs sm:text-sm font-medium opacity-80 mt-0.5">Metaphilosophy, 16(4), 266-275. Foundational academic paper introducing computer ethics.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3.5 sm:gap-4 p-3.5 sm:p-4 rounded-2xl hover:bg-sky-100/50 dark:hover:bg-sky-900/50 transition-colors border-t border-cyberBlue-400/20">
+                        <div class="p-2.5 sm:p-3 rounded-xl bg-cyberBlue-400/20 text-cyberBlue-600 dark:text-cyberBlue-glow border border-cyberBlue-400/40 shrink-0">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm sm:text-base">Republic Act No. 10173 (Data Privacy Act of 2012)</h4>
+                            <p class="text-xs sm:text-sm font-medium opacity-80 mt-0.5">National Privacy Commission of the Philippines. Protecting individual personal information in ICT systems.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHARACTER PROFILE SECTION -->
+<section id="characters" class="py-16 sm:py-24 border-t border-cyberBlue-400/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+            <!-- Permanent BSIS 3B Tag -->
+          
+            <h2 class="text-2xl sm:text-4xl font-black mt-3 sm:mt-4" data-i18n="char_title">Mga Nag himo</h2>
+            <div class="w-20 sm:w-24 h-1.5 bg-gradient-to-r from-cyberBlue-500 to-cyberBlue-glow mx-auto my-3 sm:my-4 rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- Character Card 1 -->
+            <div class="glass-panel p-6 sm:p-8 rounded-3xl hover-sidlak flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+                <div class="relative group shrink-0">
+                    <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-cyberBlue-400/60 shadow-xl sidlak-pulse">
+                        <!-- DIRI SA CODE RA MAG-INSERT UG PICTURE: Ilisi ang src="" sa link o local path sa litrato -->
+                        <img id="avatarImg1" src="picture/DIANA.jpg" alt="Diana Lahagan Avatar" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-xl font-extrabold mt-1">Diana Lahagan</h3>
+                    <p class="text-xs sm:text-sm font-medium opacity-90 leading-relaxed">
+                        BSIS 3B
+                    </p>
+                    <div class="pt-2 flex justify-center sm:justify-start space-x-3 text-cyberBlue-600 dark:text-cyberBlue-glow text-sm">
+                        <i class="fa-solid fa-award"></i>
+                        <i class="fa-solid fa-microchip"></i>
+                        <i class="fa-solid fa-shield-cat"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Character Card 2 -->
+            <div class="glass-panel p-6 sm:p-8 rounded-3xl hover-sidlak flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+                <div class="relative group shrink-0">
+                    <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-cyberBlue-400/60 shadow-xl sidlak-pulse">
+                        <!-- DIRI SA CODE RA MAG-INSERT UG PICTURE: Ilisi ang src="" sa link o local path sa litrato -->
+                        <img id="avatarImg2" src="picture/SHEENA.jpg" alt="Alex Reyes Avatar" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-xl font-extrabold mt-1">Nelicia Lawis</h3>
+                    <p class="text-xs sm:text-sm font-medium opacity-90 leading-relaxed" data-i18n="char_2_bio">
+                       BSIS 3B
+                    </p>
+                    <div class="pt-2 flex justify-center sm:justify-start space-x-3 text-cyberBlue-600 dark:text-cyberBlue-glow text-sm">
+                        <i class="fa-solid fa-user-lock"></i>
+                        <i class="fa-solid fa-terminal"></i>
+                        <i class="fa-solid fa-bug-slash"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-sky-100/80 py-10 sm:py-12 border-t border-cyberBlue-400/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs sm:text-sm font-bold">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyberBlue-600 to-cyberBlue-glow text-slate-950 flex items-center justify-center font-black">E</div>
+                <span class="text-white">EthikoTech Educational Platform (BSIS 3B)</span>
+            </div>
+            <p class="text-sky-400/60 text-center sm:text-left">&copy; 2026 Educational Computer Ethics Portal.</p>
+            <div class="flex space-x-6">
+                <a href="#home" class="hover:text-cyberBlue-glow transition-colors" data-i18n="nav_home">Home</a>
+                <a href="#issues" class="hover:text-cyberBlue-glow transition-colors" data-i18n="nav_issues">Issues</a>
+                <a href="#characters" class="hover:text-cyberBlue-glow transition-colors" data-i18n="nav_characters">Characters</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const translations = {
+            bis: {
+                nav_home: "Unahan",
+                nav_intro: "Introduksyon",
+                nav_history: "Kasaysayan",
+                nav_issues: "Mga Isyu sa Etika",
+                nav_decision: "Paghimo'g Desisyon",
+                nav_media: "Medya Gallery",
+                nav_reference: "Mga Reperensya",
+                nav_characters: "Mga Karakter",
+                hero_badge: "Mag-sidlak nga Blue Portal",
+                hero_title_1: "Paggiya sa Moralidad sa",
+                hero_title_2: "Panahon sa Teknolohiya",
+                hero_description: "Tun-i ang pangunang prinsipyo sa Computer Ethics. Susiha kung giunsa pag-umol sa responsableng teknolohiya, data privacy, ug sakto nga pagdesisyon ang atong digital nga kaugmaon.",
+                btn_start_learning: "Sugdi ang Pagtuon",
+                btn_try_simulator: "Subayi ang Kaso",
+                card_ethics_core: "Pangunang Haligi",
+                card_ethics_sub: "PAPA nga Giya",
+                pillar_privacy: "Pribasidad",
+                pillar_accuracy: "Katinuod",
+                pillar_property: "Propyedad",
+                pillar_access: "Pag-access",
+                intro_subtitle: "PANGUNANG KONSEPTO",
+                intro_title: "Unsa ang Computer Ethics?",
+                intro_desc: "Ang Computer Ethics usa ka sanga sa pilosopiya nga nagasusi sa mga moral nga isyu nga gikan sa paghimo ug paggamit sa kompyuter ug teknolohiya.",
+                intro_card1_title: "Isyu sa Kumpas sa Kodigo",
+                intro_card1_desc: "Tungod kay mas paspas ang pag-uswag sa teknolohiya kaysa sa balaod, ang mga programmer nag-atubang ug mga hagit sa data privacy ug digital nga responsabilidad.",
+                intro_card2_title: "Epekto sa Katilingban",
+                intro_card2_desc: "Ang mga lihok sa internet adunay tinuod nga epekto sa kalibutan. Gidisenyo ang etika aron makatabang ang kompyuter sa katawhan.",
+                intro_card3_title: "Tungdan sa Propesyonal",
+                intro_card3_desc: "Ang mga IT ug software engineers adunay dako nga gahum ug obligasyon nga panalipdan ang seguridad ug pribasidad sa mga tawo.",
+                history_subtitle: "PAG-USWAG SA DIGITAL VALUES",
+                history_title: "Kasaysayan ug Kronolohiya",
+                hist_1_title: "Norbert Wiener ug Cybernetics",
+                hist_1_desc: "Gimugna ni Propesor Norbert Wiener ang Cybernetics, diin iyang gipanglantawan ang dako nga hagit sa etika sa pag-abot sa kompyuter.",
+                hist_2_title: "Paggamit sa Terminong 'Computer Ethics'",
+                hist_2_desc: "Gipailaila ni Walter Maner ang tawag nga 'Computer Ethics' isip usag kabukiran nga natad sa propesyonal nga etika.",
+                hist_3_title: "Policy Vacuums ni James H. Moor",
+                hist_3_desc: "Gisulat ni Moor ang 'Policy Vacuums'—mga sitwasyon diin mas paspas ang teknolohiya kaysa sa mga lagda ug balaod.",
+                hist_4_title: "Ang 10 ka Sugo sa Computer Ethics",
+                hist_4_desc: "Gihimo sa Computer Ethics Institute (CEI) ang 10 ka sugo para sa saktong paggawi diha sa kompyuter.",
+                hist_5_title: "Etika sa AI ug Algorithmic Responsibility",
+                hist_5_desc: "Karon, ang pagtagad anaa sa Artificial Intelligence, data privacy laws, deepfakes, ug awtomatikong mga sistema.",
+                issues_subtitle: "MGA HAGIT SA KARON",
+                issues_title: "Pangunang Isyu sa Kompyuter",
+                issue_1_title: "Pribasidad ug Pagpaniid",
+                issue_1_desc: "Ang pagkuha sa personal nga data nga walay pagtugot ug ang pagpaniid sa kompanya nagaguba sa kagawasan sa tawo.",
+                issue_2_title: "Propyedad ug Pagpamirat (Piracy)",
+                issue_2_desc: "Sayon ra kaayo ikopyang mga software ug artwork sa digital. Kinahanglan balansehon ang katungod sa naghimo ug sa publiko.",
+                issue_3_title: "Cybercrime ug Hacking",
+                issue_3_desc: "Ang malware ug ransomware nagdala ug dako nga damyos. Kinahanglan klaruhon ang subay-sa-balaod nga hacking (white hat).",
+                issue_4_title: "Pagkiling sa AI (Artificial Intelligence)",
+                issue_4_desc: "Ang mga modelo sa AI mahimong magdala ug bias gikan sa datos, nga magpahinabo ug dili patas nga pagtratar.",
+                issue_5_title: "Digital Divide ug Pag-access",
+                issue_5_desc: "Ang dili patas nga pag-access sa internet ug kompyuter nagpadako sa gintang sa adunahan ug kabus.",
+                issue_6_title: "Awtomasyon ug Nawad-ag Trabaho",
+                issue_6_desc: "Ang paspas nga awtomasyon nag-ilis sa mga trabahante. Kinahanglan responsableng tabangan ang mga naapektuhan.",
+                decision_subtitle: "PRAKTIKAL NGA LAB",
+                decision_title: "Paghimo'g Desisyon Simulator",
+                decision_desc: "Ibutang ang imong kaugalingon sa dapit sa usa ka IT professional. Pagpili og tubag ug tan-awa ang moral nga epekto.",
+                btn_prev: "Mibalik",
+                btn_next: "Sunod nga Kaso",
+                media_subtitle: "MGA KAPAMILITAN SA PAGTUON",
+                media_title: "Infographics ug Video",
+                media_1_title: "Ang 10 ka Sugo sa Computer Ethics",
+                media_1_sub: "Gihimo sa Computer Ethics Institute (CEI)",
+                media_2_title: "Video Lecture: Computer Ethics",
+                media_2_sub: "Gikan sa Examhood Educational Channel",
+                media_2_foot: "Rekomendado alang sa mga estudyante sa CS ug IT.",
+                ref_subtitle: "MGA BUBONAN SA KAALAM",
+                ref_title: "Mga Reperensya ug Dugang Basahonon",
+                char_title: "Mga Mento sa Digital Ethics",
+                char_1_bio: "Nagagiya sa mga estudyante ug IT developers aron masabtan ang Cyber Privacy, AI Bias, ug ethical software development standards.",
+                char_2_bio: "BSIS 3B",
+                cmd_1: "1. Dili nimo gamiton ang kompyuter aron makadaot sa ubang tawo.",
+                cmd_2: "2. Dili nimo samok-samokon ang trabaho sa kompyuter sa uban.",
+                cmd_3: "3. Dili ka mangusisa o mangihi sa mga file sa ubang tawo.",
+                cmd_4: "4. Dili nimo gamiton ang kompyuter aron mangawat.",
+                cmd_5: "5. Dili nimo gamiton ang kompyuter aron magpasaksi og bakak.",
+                cmd_6: "6. Dili ka magkopya o maggamit og bayad nga software nga walay bayad.",
+                cmd_7: "7. Dili nimo gamiton ang kompyuter sa uban nga walay pagtugot.",
+                cmd_8: "8. Dili nimo angakon ang binuhat o huna-huna sa uban.",
+                cmd_9: "9. Huna-hunaa ang epekto sa katilingban sa programa nga imong gisulat.",
+                cmd_10: "10. Gamita kanunay ang kompyuter sa paagi nga nagpakita og pagtahod sa uban."
+            },
+            tag: {
+                nav_home: "Tahanan",
+                nav_intro: "Panimula",
+                nav_history: "Kasaysayan",
+                nav_issues: "Mga Isyung Etikal",
+                nav_decision: "Pagpapasya",
+                nav_media: "Midya Gallery",
+                nav_reference: "Mga Sanggunian",
+                nav_characters: "Mga Tauhan",
+                hero_badge: "Nagniningning na Blue Portal",
+                hero_title_1: "Paggabay sa Moralidad sa",
+                hero_title_2: "Panahon ng Digital",
+                hero_description: "Pagharian ang mga pangunahing prinsipyo ng Computer Ethics. Alamin kung paano hinuhubog ng responsableng teknolohiya at Data Privacy ang ating hinaharap.",
+                btn_start_learning: "Simulan ang Pag-aaral",
+                btn_try_simulator: "Subukan ang Simulator",
+                card_ethics_core: "Pangunahing Haligi",
+                card_ethics_sub: "PAPA Framework",
+                pillar_privacy: "Pribasya",
+                pillar_accuracy: "Kumpirmasyon",
+                pillar_property: "Ari-arian",
+                pillar_access: "Aksesibilidad",
+                intro_subtitle: "MGA PANGUNAHING KONSEPTO",
+                intro_title: "Ano ang Computer Ethics?",
+                intro_desc: "Ang Computer Ethics ay sangay ng praktikal na pilosopiya na nagsusuri sa mga isyung moral na dulot ng pag-unlad ng teknolohiya sa kompyuter.",
+                intro_card1_title: "Dilemang Moral sa Kodigo",
+                intro_card1_desc: "Dahil mas mabilis ang pag-unlad ng teknolohiya kaysa sa batas, ang mga programmer ay nahaharap sa mga hamon sa data privacy at responsibilidad.",
+                intro_card2_title: "Epekto sa Lipunan",
+                intro_card2_desc: "Ang mga kilos sa digital ay may totoong epekto. Tinitiyak ng etika na ang kompyuter ay nakatutulong sa sangkatauhan.",
+                intro_card3_title: "Tungkuling Propesyonal",
+                intro_card3_desc: "Ang mga propesyonal sa IT ay may malaking kapangyarihan at responsibilidad na protektahan ang kaligtasan at pribasya ng publiko.",
+                history_subtitle: "EBOLUSYON NG DIGITAL VALUES",
+                history_title: "Kasaysayan at Kronolohiya",
+                hist_1_title: "Norbert Wiener at Cybernetics",
+                hist_1_desc: "Binuo ni Prof. Norbert Wiener ang Cybernetics, kung saan inasahan niya ang malaking hamon sa etika dulot ng mga kompyuter.",
+                hist_2_title: "Pag-imbento sa Terminong 'Computer Ethics'",
+                hist_2_desc: "Ipinakilala ni Walter Maner ang terminong 'Computer Ethics' bilang isang bukod na larangan ng propesyonal na etika.",
+                hist_3_title: "Policy Vacuums ni James H. Moor",
+                hist_3_desc: "Inilathala ni Moor ang 'Policy Vacuums'—mga sitwasyon kung saan mas mabilis ang kakayahan ng teknolohiya kaysa sa mga alituntunin.",
+                hist_4_title: "Sampung Utos ng Computer Ethics",
+                hist_4_desc: "Binuo ng Computer Ethics Institute (CEI) ang sampung utos para sa tamang pag-uugali sa paggamit ng kompyuter.",
+                hist_5_title: "Etika sa AI at Algorithmic Responsibility",
+                hist_5_desc: "Nakalimita na ngayon ang atensyon sa Artificial Intelligence, mga batas sa data privacy, deepfakes, at autonomous systems.",
+                issues_subtitle: "MGA MAKABAGONG HAMON",
+                issues_title: "Pangunahing Isyung Etikal sa Kompyuter",
+                issue_1_title: "Pribasya at Malawakang Pagsubaybay",
+                issue_1_desc: "Ang pagkuha ng personal na datos nang walang pahintulot ay sumisira sa kalayaan ng bawat indibidwal.",
+                issue_2_title: "Intellectual Property at Piracy",
+                issue_2_desc: "Madaling kopyahin ang mga software at digital art. Mahalagang balansehin ang karapatan ng lumikha at ng publiko.",
+                issue_3_title: "Cybercrime at Hacking",
+                issue_3_desc: "Ang malware at ransomware ay nagdudulot ng malaking pinsala. Kailangang ihiwalay ang ethical hacking sa krimen.",
+                issue_4_title: "Bias sa Artificial Intelligence",
+                issue_4_desc: "Ang mga modelo ng AI ay maaaring magkaroon ng diskriminasyon batay sa datos na ginamit sa pag-sanay dito.",
+                issue_5_title: "Digital Divide at Aksesibilidad",
+                issue_5_desc: "Ang hindi pantay na pag-access sa internet at kompyuter ay nagpapalaki sa agwat ng mayaman at mahirap.",
+                issue_6_title: "Awtomasyon at Pagkawala ng Trabaho",
+                issue_6_desc: "Mabilis na pinapalitan ng awtomasyon ang mga manggagawa. Responsibilidad ng mga kumpanya na tulungan ang naapektuhan.",
+                decision_subtitle: "PRAKTIKAL NA LAB",
+                decision_title: "Simulator sa Pagpapasya",
+                decision_desc: "Ilagay ang iyong sarili sa posisyon ng isang IT professional. Pumili ng tugon at alamin ang epektong etikal nito.",
+                btn_prev: "Nakaraan",
+                btn_next: "Susunod na Senaryo",
+                media_subtitle: "MGA SANGGUNIAN SA PAG-AARAL",
+                media_title: "Infographics at Video Lectures",
+                media_1_title: "Ang 10 Utos ng Computer Ethics",
+                media_1_sub: "Binuo ng Computer Ethics Institute (CEI)",
+                media_2_title: "Video Lecture: Computer Ethics",
+                media_2_sub: "Gikan sa Examhood Educational Channel",
+                media_2_foot: "Inirerekomenda para sa mga mag-aaral ng CS at IT.",
+                ref_subtitle: "MGA AKADEMIKONG SANGGUNIAN",
+                ref_title: "Mga Sanggunian at Karagdagang Babasahin",
+                char_title: "Mga Tagapagturo sa Digital Ethics",
+                char_1_bio: "Nagtuturo sa mga mag-aaral at IT developer upang maunawaan ang Data Privacy, AI Bias, at pamantayan sa etikal na software.",
+                char_2_bio: "BSIS 3B",
+                cmd_1: "1. Huwag gagamitin ang kompyuter upang makapanakit ng ibang tao.",
+                cmd_2: "2. Huwag mang-aabala sa trabaho sa kompyuter ng ibang tao.",
+                cmd_3: "3. Huwag manghihimasok sa mga file ng ibang tao.",
+                cmd_4: "4. Huwag gagamitin ang kompyuter upang magnakaw.",
+                cmd_5: "5. Huwag gagamitin ang kompyuter upang magsinungaling o magkalat ng maling balita.",
+                cmd_6: "6. Huwag kopyahin o gagamitin ang proprietary software nang hindi nagbabayad.",
+                cmd_7: "7. Huwag gagamitin ang mga resource ng kompyuter ng iba nang walang pahintulot.",
+                cmd_8: "8. Huwag angkinin ang gawang intelektwal ng ibang tao.",
+                cmd_9: "9. Isipin ang kahihinatnan sa lipunan ng programang iyong isinusulat.",
+                cmd_10: "10. Gamitin ang kompyuter sa paraang nagpapakita ng paggalang sa kapwa."
+            },
+            en: {
+                nav_home: "Home",
+                nav_intro: "Introduction",
+                nav_history: "History",
+                nav_issues: "Ethical Issues",
+                nav_decision: "Decision Lab",
+                nav_media: "Media Gallery",
+                nav_reference: "References",
+                nav_characters: "Characters",
+                hero_badge: "Glowing Blue Portal",
+                hero_title_1: "Navigating Moral Horizons in the",
+                hero_title_2: "Digital Age",
+                hero_description: "Master the core principles of Computer Ethics. Learn how responsible software practices, data privacy laws, and moral decision-making protect humanity's technological future.",
+                btn_start_learning: "Start Learning",
+                btn_try_simulator: "Try Case Simulator",
+                card_ethics_core: "Core Pillars",
+                card_ethics_sub: "PAPA Framework",
+                pillar_privacy: "Privacy",
+                pillar_accuracy: "Accuracy",
+                pillar_property: "Property",
+                pillar_access: "Accessibility",
+                intro_subtitle: "FOUNDATIONAL CONCEPTS",
+                intro_title: "What is Computer Ethics?",
+                intro_desc: "Computer ethics is a branch of practical philosophy that analyzes ethical dilemmas resulting from the creation and usage of computer technology and information networks.",
+                intro_card1_title: "Moral Dilemmas in Code",
+                intro_card1_desc: "As software outpaces legal frameworks, developers face complex choices regarding automated decision bias, data exposure, and digital accountability.",
+                intro_card2_title: "Societal Impact",
+                intro_card2_desc: "Digital actions carry physical consequences. From social algorithms to autonomous systems, ethical guidelines ensure tech serves public well-being.",
+                intro_card3_title: "Professional Duty",
+                intro_card3_desc: "IT professionals and software engineers are bound by professional codes of conduct to safeguard public safety, privacy, and integrity.",
+                history_subtitle: "EVOLUTION OF DIGITAL VALUES",
+                history_title: "History & Timeline",
+                hist_1_title: "Norbert Wiener & Cybernetics",
+                hist_1_desc: "MIT professor Norbert Wiener creates Cybernetics, forecasting that electronic computing would create massive ethical and social dilemmas regarding labor and human identity.",
+                hist_2_title: "Walter Maner Coincides 'Computer Ethics'",
+                hist_2_desc: "Walter Maner introduces the term 'Computer Ethics' to define a distinct field of medical and professional ethics dedicated to issues created specifically by computer technology.",
+                hist_3_title: "James H. Moor's Policy Vacuums",
+                hist_3_desc: "Moor publishes 'What is Computer Ethics?', introducing the concept of 'policy vacuums'—situations where technological capabilities outpace ethical guidelines and legal rules.",
+                hist_4_title: "Ten Commandments of Computer Ethics",
+                hist_4_desc: "The Computer Ethics Institute (CEI) formulates the 'Ten Commandments of Computer Ethics', providing clear universal guidance for ethical computer behavior.",
+                hist_5_title: "AI Ethics & Algorithmic Responsibility",
+                hist_5_desc: "BSIS 3B",
+                issues_subtitle: "MODERN CHALLENGES",
+                issues_title: "Key Ethical Issues in Computing",
+                issue_1_title: "Privacy & Mass Surveillance",
+                issue_1_desc: "Unauthorized collection of personal data, corporate tracking, metadata logging, and government surveillance undermine individual freedoms.",
+                issue_2_title: "Intellectual Property & Piracy",
+                issue_2_desc: "Digital distribution makes copying software, media, and artwork frictionless. Balancing creator rewards with open access remains contentious.",
+                issue_3_title: "Cybercrime & Hacking",
+                issue_3_desc: "Malware, ransomware, and identity theft inflict billions in financial losses. Ethical hacking (penetration testing) must be distinguished from crime.",
+                issue_4_title: "Artificial Intelligence Bias",
+                issue_4_desc: "Machine learning models inherit human biases present in training datasets, resulting in discriminatory hiring and algorithmic profiling.",
+                issue_5_title: "Digital Divide & Accessibility",
+                issue_5_desc: "Unequal access to high-speed internet and computing hardware exacerbates socioeconomic inequalities across global communities.",
+                issue_6_title: "Automation & Work Displacement",
+                issue_6_desc: "Rapid automation replaces traditional human roles. Ethical organizations must manage labor transitions through reskilling program initiatives.",
+                decision_subtitle: "PRACTICAL ETHICS LAB",
+                decision_title: "Ethical Decision Making Simulator",
+                decision_desc: "Test your ethical compass in realistic IT scenarios. Select your course of action and discover immediate moral analysis.",
+                btn_prev: "Previous",
+                btn_next: "Next Scenario",
+                media_subtitle: "LEARNING RESOURCES",
+                media_title: "Infographics & Video Lectures",
+                media_1_title: "The 10 Commandments of Computer Ethics",
+                media_1_sub: "Formulated by the Computer Ethics Institute (CEI)",
+                media_2_title: "Video Lecture: Computer Ethics",
+                media_2_sub: "Gikan sa Examhood Educational Channel",
+                media_2_foot: "Recommended viewing for CS, IT, and Engineering students.",
+                ref_subtitle: "ACADEMIC SOURCES",
+                ref_title: "References & Citations",
+                char_title: "Digital Ethics Mentors",
+                char_1_bio: "Guides students and IT developers to understand Data Privacy, AI Bias, and ethical software engineering standards.",
+                char_2_bio: "Focuses on cybersecurity resilience, White Hat Hacking principles, and safeguarding critical databases against cyber threats.",
+                cmd_1: "1. Thou shalt not use a computer to harm other people.",
+                cmd_2: "2. Thou shalt not interfere with other people's computer work.",
+                cmd_3: "3. Thou shalt not snoop around in other people's computer files.",
+                cmd_4: "4. Thou shalt not use a computer to steal.",
+                cmd_5: "5. Thou shalt not use a computer to bear false witness.",
+                cmd_6: "6. Thou shalt not copy proprietary software without paying.",
+                cmd_7: "7. Thou shalt not use computer resources without authorization.",
+                cmd_8: "8. Thou shalt not appropriate other people's intellectual output.",
+                cmd_9: "9. Thou shalt think about the social consequences of the program you write.",
+                cmd_10: "10. Thou shalt use a computer with consideration and respect for others."
+            }
+        };
+
+        let currentLang = 'bis';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            renderScenario();
+        }
+
+        const scenarios = [
+            {
+                category: { en: "Data Privacy Dilemma", bis: "Dilema sa Privacy sa Data", tag: "Dilema sa Pribasya ng Datos" },
+                title: { en: "Uncovered Security Flaw", bis: "Nakit-an nga Guba sa Seguridad", tag: "Natuklasang Kahinaan sa Seguridad" },
+                text: {
+                    en: "You are a software tester who discovers a critical security vulnerability revealing customer passwords. Your manager asks you to delay reporting it to avoid missing the product release.",
+                    bis: "Usa ka software tester nga nakadiskubre ug dako nga guba sa sistema sa inyong kompanya nga nagpakita sa mga password sa customer. Giingnan ka sa imong manager nga magpakahilom usa aron dili maatrasar ang pag-launch.",
+                    tag: "Isa kang software tester na nakadiskubre ng malaking banta sa seguridad ng system ng inyong kumpanya kung saan nakalantad ang password ng customer. Sinabihan ka ng iyong manager na manahimik muna upang hindi maantala ang launch."
+                },
+                choices: [
+                    {
+                        text: { en: "A) Obey your manager and keep silent until scheduled updates.", bis: "A) Sundon ang manager ug magpakahilom hangtod sa sunod nga update.", tag: "A) Sundin ang manager at manahimik hanggang sa nakatakdang update." },
+                        ethical: false,
+                        feedback: { en: "Unethical. Prioritizing release deadlines over data safety places customers at grave risk.", bis: "Dili kini moral. Ang pag-una sa deadline kaysa sa seguridad sa customer nagbutang sa ilang data sa dakong peligro.", tag: "Hindi etikal. Ang pag-una sa deadline kaysa sa seguridad ng customer ay naglalagay sa kanilang datos sa panganib." }
+                    },
+                    {
+                        text: { en: "B) Escalate internally with evidence and demand an immediate security patch.", bis: "B) Ipatala ang isyu sa mas taas nga opisyal uban ang ebidensya ug maghangyo ug dinalian nga hotfix.", tag: "B) Ipaabot ang isyu sa mas mataas na opisyal kasama ang ebidensya at humingi ng agarang hotfix." },
+                        ethical: true,
+                        feedback: { en: "Ethical! Responsible internal reporting protects user safety while adhering to professional integrity.", bis: "Dako kaayong saktong desisyon! Ang responsableng pagpahibalo nanalipod sa datos sa publiko ug nagpakita sa taas nga sukdanan sa propesyon.", tag: "Napaka-etikal na desisyon! Ang responsableng pag-uulat ay nagtatanggol sa datos ng publiko at nagpapakita ng mataas na pamantayan." }
+                    }
+                ]
+            },
+            {
+                category: { en: "AI Fairness Dilemma", bis: "Dilema sa Bias sa AI", tag: "Dilema sa Bias ng AI" },
+                title: { en: "Biased Recruitment Algorithm", bis: "Bias nga Algorithm sa Pagpang-hire", tag: "May Pagkiling na AI Hiring System" },
+                text: {
+                    en: "Your team built an AI recruitment tool. Internal testing reveals it systematically penalizes female applicants due to biased historic datasets.",
+                    bis: "Ang inyong grupo naghimo og AI recruitment tool. Sa pagsulay, nakita nga ang AI nagpaubos sa grado sa mga babaye tungod sa daang datos. Gusto sa imong boss nga i-deploy gihapon kini.",
+                    tag: "Binuo ng inyong koponan ang isang AI recruitment tool. Lumabas sa pagsusuri na binabawasan ng AI ang marka ng mga babaeng aplikante dahil sa biased na lumang datos."
+                },
+                choices: [
+                    {
+                        text: { en: "A) Halt deployment and demand dataset re-balancing.", bis: "A) Balibaran ang pag-deploy ug hangyoon nga ayuhon ang datos aron mawala ang bias.", tag: "A) Tumangging gamitin ito at itulak ang pag-aayos sa datos upang matanggal ang bias." },
+                        ethical: true,
+                        feedback: { en: "Ethical & Correct! Automated discrimination violates justice and fairness principles.", bis: "Sakto ug Moral! Ang awtomatikong diskriminasyon supak sa hustisya. Obligasyon sa engineer nga balibaran ang bias nga sistema.", tag: "Etikal at Tama! Ang awtomatikong diskriminasyon ay labag sa katarungan." }
+                    },
+                    {
+                        text: { en: "B) Deploy immediately and fix bias later in future updates.", bis: "B) I-deploy lang usa kini ug hinay-hinay nga ayuhon sulod sa unom ka bulan.", tag: "B) Gamitin muna ito at unti-unting ayusin sa loob ng susunod na anim na buwan." },
+                        ethical: false,
+                        feedback: { en: "Unethical. Deploying known biased software causes immediate harm to innocent applicants.", bis: "Dili moral. Ang paggamit sa nakit-an nang bias nga sistema makadaot sa daghang aplikante.", tag: "Hindi etikal. Ang paggamit ng alam nang biased na system ay magdudulot ng hindi makatarungang pagtanggi." }
+                    }
+                ]
+            },
+            {
+                category: { en: "Intellectual Property", bis: "Intellectual Property", tag: "Intellectual Property" },
+                title: { en: "Open-Source Code Attribution", bis: "Paggamit sa Open-Source Code", tag: "Paggamit ng Open-Source Code" },
+                text: {
+                    en: "You found a brilliant open-source library online for your project, but the license requires keeping author credits. You delete the author's tag and claim 100% original authorship.",
+                    bis: "Nakakita ka og nindot nga open-source code para sa imong proyekto, apan gipangayo sa lisensya nga ibilin ang ngalan sa tag-iya. Gitangtang nimo kini ug giangkon nga imoha ang tibuok suwat.",
+                    tag: "Nakakita ka ng magandang open-source code para sa proyekto, ngunit kailangang panatilihin ang kredito ng may-akda. Binura mo ito at sinabing ikaw ang buong gumawa."
+                },
+                choices: [
+                    {
+                        text: { en: "A) Retain the original author credit and properly attribute the library.", bis: "A) Ibilin ang credit sa orihinal nga naghimo ug ibutang ang sakto nga attribution.", tag: "A) Panatilihin ang kredito ng orihinal na may-akda at ilagay ang tamang attribution." },
+                        ethical: true,
+                        feedback: { en: "Ethical & Correct! Respecting intellectual property and software licensing is fundamental to developer integrity.", bis: "Sakto ug Moral! Ang pagrespeto sa intellectual property ug lisensya maoy pundasyon sa responsableng developer.", tag: "Etikal at Tama! Ang paggalang sa intellectual property at lisensya ay pundasyon ng responsableng developer." }
+                    },
+                    {
+                        text: { en: "B) Strip the attribution tags so your work looks completely original to your instructor.", bis: "B) Tangtangon ang credit tags aron tan-awon nga 100% imohang hinimo ngadto sa maestro.", tag: "B) Burahin ang attribution tags upang magmukhang 100% mong gawa sa iyong guro." },
+                        ethical: false,
+                        feedback: { en: "Unethical. Stripping credits is plagiarism and violates code licensing agreements.", bis: "Dili moral. Ang pagtangtang sa credit kay usa ka porma sa plagiarism ug paglapas sa kasabutan sa lisensya.", tag: "Hindi etikal. Ang pag-alis ng kredito ay plagiarism at paglabag sa lisensya ng software." }
+                    }
+                ]
+            },
+            {
+                category: { en: "Cybersecurity & Privacy", bis: "Cybersecurity ug Privacy", tag: "Cybersecurity at Privacy" },
+                title: { en: "Portal Password Sharing", bis: "Pagpasa sa Portal Password", tag: "Pagbabahagi ng Portal Password" },
+                text: {
+                    en: "A close friend asks for your student portal login credentials so they can quickly copy your submitted assignment before the deadline.",
+                    bis: "Nangayo ang imong suod nga higala sa imong portal login aron kopyahon ang imong gi-submit nga assignment sa dili pa ang deadline.",
+                    tag: "Humingi ang iyong matalik na kaibigan ng iyong portal login upang kopyahin ang iyong naipasa na takdang-aralin bago ang deadline."
+                },
+                choices: [
+                    {
+                        text: { en: "A) Refuse to share credentials and offer to explain the lesson concepts instead.", bis: "A) Balibaran ang paghatag sa password ug itudlo nalang ang leksyon aron makasabot siya.", tag: "A) Tumangging ibigay ang password at ituro na lamang ang aralin upang maunawaan niya." },
+                        ethical: true,
+                        feedback: { en: "Ethical & Correct! Protecting credentials prevents academic dishonesty and maintains system security.", bis: "Sakto ug Moral! Ang pagtago sa password naglikay sa pagpangopya ug nanalipod sa seguridad sa sistema.", tag: "Etikal at Tama! Ang pagtatago ng password ay naiiwasan ang panggagaya at nagpapanatili ng seguridad." }
+                    },
+                    {
+                        text: { en: "B) Hand over your username and password because they are your close friend.", bis: "B) Ihatag ang username ug password kay suod man mo nga amigo.", tag: "B) Ibigay ang username at password dahil matalik mo naman siyang kaibigan." },
+                        ethical: false,
+                        feedback: { en: "Unethical. Sharing security credentials compromises system integrity and enables academic fraud.", bis: "Dili moral. Ang paghatag sa password naglapas sa patakaran sa seguridad ug nagtugot sa pagpangopya.", tag: "Hindi etikal. Ang pagbibigay ng password ay lumalabag sa seguridad at nagpapahintulot ng panggagaya." }
+                    }
+                ]
+            },
+            {
+                category: { en: "Information Ethics", bis: "Ethics sa Impormasyon", tag: "Etika sa Impormasyon" },
+                title: { en: "Sharing Unverified Panic News", bis: "Pag-share sa Balita nga Nagdala og Kahadlok", tag: "Pagbabahagi ng Balitang Nagdudulot ng Takot" },
+                text: {
+                    en: "You stumble upon an alarming news post about a local crisis without any official sources. You feel tempted to share it immediately.",
+                    bis: "Nakakita ka og makahahadlok nga balita bahin sa krisis sa inyong dapit nga walay opisyal nga gigikanan. Gusto nimo kini i-share dayon.",
+                    tag: "Nakakita ka ng nakakatakot na balita tungkol sa krisis sa inyong lugar na walang opisyal na pinagmulan. Nais mo itong ibahagi agad."
+                },
+                choices: [
+                    {
+                        text: { en: "A) Verify the story with legitimate news outlets before taking any action.", bis: "A) Susiha una ang balita sa mga lehitimong opisyal nga gigikanan sa dili pa mag-action.", tag: "A) Suriin muna ang balita sa mga lehitimong opisyal na pinagmulan bago kumilos." },
+                        ethical: true,
+                        feedback: { en: "Ethical & Correct! Fact-checking prevents public panic and stops the spread of viral fake news.", bis: "Sakto ug Moral! Ang pag-fact check nagpugong sa kahadlok sa publiko ug nagpahunong sa fake news.", tag: "Etikal at Tama! Ang pag-verify ng impormasyon ay pumipigil sa takot at pagpapakalat ng maling balita." }
+                    },
+                    {
+                        text: { en: "B) Share it instantly to your feed to gain reactions and warn everyone fast.", bis: "B) I-share kini dayon aron makakuha og daghang react ug makapahabalo sa uban.", tag: "B) Ibahagi agad ito upang makakuha ng maraming react at magbabala sa iba." },
+                        ethical: false,
+                        feedback: { en: "Unethical. Amplifying unverified news causes chaos and violates digital information ethics.", bis: "Dili moral. Ang pagpakatlap sa dili kumpirmado nga balita makadaot ug magdala og kaguliyang.", tag: "Hindi etikal. Ang pagpapakalat ng hindi beripikadong balita ay nagdudulot ng kaguluhan." }
+                    }
+                ]
+            },
+            {
+                category: { en: "Software Ethics", bis: "Ethics sa Software", tag: "Etika sa Software" },
+                title: { en: "Downloading Cracked Software", bis: "Paggamit sa Cracked Software", tag: "Paggamit ng Cracked Software" },
+                text: {
+                    en: "To complete an engineering project, you need premium software. A torrent link promises a free cracked version packed with unknown executable files.",
+                    bis: "Kinahanglan nimo ang premium software para sa proyekto. May nakita kang cracked version sa torrent nga naay kadudahang executable files.",
+                    tag: "Kailangan mo ng premium software para sa proyekto. May nakita kang cracked version sa torrent na may kahina-hinalang executable files."
+                },
+                choices: [
+                    {
+                        text: { en: "A) Use open-source alternatives or request an official academic license.", bis: "A) Pilia ang open-source nga alternatibo o hangyo ug opisyal nga student license.", tag: "A) Gumamit ng open-source na alternatibo o humingi ng opisyal na student license." },
+                        ethical: true,
+                        feedback: { en: "Ethical & Correct! Avoiding pirated software respects copyrights and protects your network from malware.", bis: "Sakto ug Moral! Ang paglikay sa pirated software nagrespeto sa copyright ug nagpreserbar sa cybersecurity.", tag: "Etikal at Tama! Ang pag-iwas sa pirated software ay nagpapakita ng paggalang sa copyright at seguridad." }
+                    },
+                    {
+                        text: { en: "B) Download and run the crack on the campus network to bypass purchasing.", bis: "B) I-download ug patagaya ang crack sa network sa eskwelahan aron dili na mopalit.", tag: "B) I-download at patakbuhin ang crack sa network ng paaralan upang hindi na bumili." },
+                        ethical: false,
+                        feedback: { en: "Unethical. Software piracy breaches copyright laws and introduces severe security vulnerabilities.", bis: "Dili moral. Ang paggamit sa pirated software naglapas sa balaod ug nagdala og malware sa sistema.", tag: "Hindi etikal. Ang paggamit ng pirated software ay paglabag sa batas at nagpapasok ng malware sa system." }
+                    }
+                ]
+            },
+            {
+                category: { en: "Digital Boundaries", bis: "Digital nga Kinutuban", tag: "Digital na Hangganan" },
+                title: { en: "Left-Open Account Prank", bis: "Binuang sa Nabilin nga Account", tag: "Biho sa Naiwang Account" },
+                text: {
+                    en: "Your lab partner left their social media logged in on a public lab computer. Your peers dare you to post an embarrassing status.",
+                    bis: "Nabilin sa imong klasmeyt nga nakalog-in ang iyang social media sa lab computer. Gi-dare ka sa uban nga mag-post og binuang.",
+                    tag: "Naiwang naka-login ang social media ng iyong kaklase sa pampublikong kompyuter. Hinamon ka ng iyong mga kasama na mag-post ng nakakapahiya."
+                },
+                choices: [
+                    {
+                        text: { en: "A) Log out of the session safely and notify your lab partner.", bis: "A) I-log out ang account sa hilom ug pahibaloa ang imong klasmeyt.", tag: "A) I-logout nang maayos ang account at ipaalam ito sa iyong kaklase." },
+                        ethical: true,
+                        feedback: { en: "Ethical & Correct! Respecting user privacy and account boundaries upholds cyber ethics.", bis: "Sakto ug Moral! Ang pagrespeto sa pribasiya sa uban nagpakita sa maayong pamatasan sa digital world.", tag: "Etikal at Tama! Ang paggalang sa privacy ng iba ay nagpapakita ng mabuting pag-uugali sa digital world." }
+                    },
+                    {
+                        text: { en: "B) Post an embarrassing status update since the account was left open.", bis: "B) Mag-post og binuang nga status tungod kay nabilin man kini nga abli.", tag: "B) Mag-post ng nakakapahiyang status dahil naiwan naman itong nakabukas." },
+                        ethical: false,
+                        feedback: { en: "Unethical. Unauthorized account manipulation violates privacy and digital boundaries, regardless of intent.", bis: "Dili moral. Ang paggamit sa account sa uban nga walay permiso kay paglapas sa pribasiya.", tag: "Hindi etikal. Ang paggamit sa account ng iba nang walang pahintulot ay paglabag sa privacy." }
+                    }
+                ]
+            },
+            {
+                category: { en: "Academic Integrity", bis: "Akademikong Integridad", tag: "Akademikong Integridad" },
+                title: { en: "Raw AI Essay Submission", bis: "Direktang Paggamit sa AI Essay", tag: "Direktang Paggamit ng AI Essay" },
+                text: {
+                    en: "You are assigned an ethical essay. You generate the whole text using ChatGPT and submit it directly without writing or understanding any part of it.",
+                    bis: "Gihatagan ka og essay assignment. Gigamit nimo ang ChatGPT aron himoon tanan ug gi-submit nga walay gisuwat o gisabtan.",
+                    tag: "Binigyan ka ng takdang-aralin na essay. Gumamit ka ng ChatGPT upang gawin ang lahat at isumite nang walang isinulat o naunawaan."
+                },
+                choices: [
+                    {
+                        text: { en: "A) Use AI as a brainstorming partner, but write the final essay in your own words with critical thought.", bis: "A) Gamita ang AI isip tabang sa ideya, apan isulat ang tibuok essay gamit ang imong kaugalingong sabot ug pulong.", tag: "A) Gamitin ang AI bilang gabay sa ideya, ngunit isulat ang buong essay gamit ang sariling pag-unawa at salita." },
+                        ethical: true,
+                        feedback: { en: "Ethical & Correct! Leveraging tech responsibly while ensuring authentic learning upholds academic integrity.", bis: "Sakto ug Moral! Ang paggamit sa AI isip giya nga nagpabilin ang imong kaugalingong hunahuna maoy saktong paagi sa pagtuon.", tag: "Etikal at Tama! Ang paggamit ng AI bilang gabay habang pinapanatili ang sariling pag-iisip ay tamang paraan ng pag-aaral." }
+                    },
+                    {
+                        text: { en: "B) Pass off the raw AI output as your personal intellectual effort to get an easy grade.", bis: "B) I-submit ang limpyong resulta sa AI ug angkona nga imohang paningkamot aron makapasa sa dali nga paagi.", tag: "B) Isumite ang direktang resulta ng AI at angkining sarili mong sikap upang makapasa nang madali." },
+                        ethical: false,
+                        feedback: { en: "Unethical. Claiming AI generated outputs as your authentic intellectual work is academic dishonesty.", bis: "Dili moral. Ang pag-angkon sa gi-generate sa AI nga walay gihatag nga kaugalingong pino kay usa ka porma sa dishonesty.", tag: "Hindi etikal. Ang pag-angkon sa gawa ng AI nang walang sariling pagsusumikap ay pandaraya sa pag-aaral." }
+                    }
+                ]
+            }
+        ];
+
+        let currentIdx = 0;
+
+        function renderScenario() {
+            const sc = scenarios[currentIdx];
+            if (!sc) return;
+
+            document.getElementById('scenarioCategory').textContent = sc.category[currentLang] || sc.category['en'];
+            document.getElementById('scenarioProgress').textContent = `${currentIdx + 1} of ${scenarios.length}`;
+            document.getElementById('scenarioTitle').textContent = sc.title[currentLang] || sc.title['en'];
+            document.getElementById('scenarioText').textContent = sc.text[currentLang] || sc.text['en'];
+
+            const fbBox = document.getElementById('feedbackBox');
+            fbBox.classList.add('hidden');
+
+            const container = document.getElementById('choicesContainer');
+            container.innerHTML = '';
+
+            sc.choices.forEach((c) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-3.5 sm:p-4.5 rounded-2xl border border-cyberBlue-400/30 bg-sky-100/40 dark:bg-sky-950/40 hover:bg-cyberBlue-400/20 hover:border-cyberBlue-400/60 transition-all font-bold text-xs sm:text-base flex items-start space-x-2.5 sm:space-x-3 shadow-sm";
+                btn.onclick = () => {
+                    fbBox.classList.remove('hidden', 'bg-sky-500/20', 'border-sky-500/40', 'text-sky-900', 'dark:text-sky-200', 'bg-red-500/20', 'border-red-500/40', 'text-red-900', 'dark:text-red-200');
+                    if (c.ethical) {
+                        fbBox.classList.add('bg-sky-500/20', 'border-sky-500/40', 'text-sky-900', 'dark:text-sky-200');
+                        document.getElementById('feedbackHeader').innerHTML = `<i class="fa-solid fa-circle-check text-cyberBlue-500"></i> ${currentLang === 'bis' ? 'Saktong Desisyon' : currentLang === 'tag' ? 'Etikal na Pagpapasya' : 'Ethical Decision'}`;
+                    } else {
+                        fbBox.classList.add('bg-red-500/20', 'border-red-500/40', 'text-red-900', 'dark:text-red-200');
+                        document.getElementById('feedbackHeader').innerHTML = `<i class="fa-solid fa-triangle-exclamation text-red-500"></i> ${currentLang === 'bis' ? 'Dili Moral / Sayop' : currentLang === 'tag' ? 'Hindi Etikal' : 'Unethical Decision'}`;
+                    }
+                    document.getElementById('feedbackText').textContent = c.feedback[currentLang] || c.feedback['en'];
+                };
+                btn.innerHTML = `<i class="fa-solid fa-chevron-right text-cyberBlue-500 mt-0.5 sm:mt-1 shrink-0"></i> <span>${c.text[currentLang] || c.text['en']}</span>`;
+                container.appendChild(btn);
+            });
+
+            document.getElementById('prevBtn').disabled = currentIdx === 0;
+            document.getElementById('nextBtn').disabled = currentIdx === scenarios.length - 1;
+        }
+
+        function prevScenario() { if (currentIdx > 0) { currentIdx--; renderScenario(); } }
+        function nextScenario() { if (currentIdx < scenarios.length - 1) { currentIdx++; renderScenario(); } }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                themeIcon.className = "fa-solid fa-sun text-amber-500";
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                themeIcon.className = "fa-solid fa-moon text-cyberBlue-glow";
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                if(document.getElementById('themeIcon')) document.getElementById('themeIcon').className = "fa-solid fa-moon text-cyberBlue-glow";
+            } else {
+                document.documentElement.classList.remove('dark');
+                if(document.getElementById('themeIcon')) document.getElementById('themeIcon').className = "fa-solid fa-sun text-amber-500";
+            }
+            changeLanguage('bis');
+        };
+    </script>
+</body>
+</html>
